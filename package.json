@@ -1,0 +1,23 @@
+{
+  "name": "mapty",
+  "version": "1.0.0",
+  "description": "an app for monitoring your running and cycling activity",
+  "default": "index.html",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html --public-url ./ --dist-dir public --no-scope-hoist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haosmos/Mapty.git"
+  },
+  "author": "chaosmos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haosmos/Mapty/issues"
+  },
+  "homepage": "https://github.com/haosmos/Mapty#readme",
+  "dependencies": {
+    "parcel": "^2.2.1"
+  }
+}
