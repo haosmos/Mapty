@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+
+  &:focus-within {
+    scroll-behavior: smooth;
+  }
+
+  @media screen and (max-width: $bp-large) {
+    font-size: 50%; // 1rem = 8px
+  }
+  @media screen and (max-width: $bp-medium) {
+    font-size: 43.75%; // 1rem = 7px
+  }
+  @media screen and (max-width: $bp-micro) {
+    font-size: 40%; // 1rem = 6,4px
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px 10 / 16
+  box-sizing: border-box;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 50%; // 1rem = 8px
+  }
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.5rem;
+  padding: 3rem;
+  height: 100vh;
+  line-height: 1.6;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  @media only screen and (max-width: $bp-large) {
+    padding: 0;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    display: flex;
+    flex-direction: column;
+  }
+}
