@@ -210,16 +210,12 @@ class WorkoutListView extends View {
         return `
             <div class="workout__details">
                 <span class="workout__imoji">⚡️</span>
-                <span class="workout__value workout__value--speed">${workout.speed.toFixed(
-            1
-        )}</span>
+                <span class="workout__value workout__value--speed">${workout.speed.toFixed(1)}</span>
                 <span class="workout__unit">min/km</span>
             </div>
             <div class="workout__details">
                 <span class="workout__imoji">⛰</span>
-                <span class="workout__value workout__value--elevation">${
-            workout.elevationGain
-        }</span>
+                <span class="workout__value workout__value--elevation">${workout.elevationGain}</span>
                 <span class="workout__unit">m</span>
             </div>
         </li>

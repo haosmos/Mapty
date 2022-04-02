@@ -32,28 +32,22 @@ const controlWorkouts = function () {
     mapView.renderWorkoutMarker(workout);
     // todo set localstorage
 
+    // prettier-ignore
+    // todo findworkout
 
-    if (model.state.edit) {
-        // prettier-ignore
-        const workout = findWorkout(model.state.workouts, model.state.workoutElement);
+    // todo EDIT WORKOUT AND SET THE EDITED WORKOUT TO LOCAL STORAGE
 
-        // EDIT WORKOUT AND SET THE EDITED WORKOUT TO LOCAL STORAGE
-        workoutListsView.editWorkout(workout);
-        model.setLocalStorage(model.state.workouts);
-
-        // DELETE WORKOUT LISTS, POPUP AND RERENDER WORKOUT LISTS, POPUP WITH EDITED DATA
-        submenuView.deleteAllWorkouts();
-        model.state.edit = false;
-        mapView.setZoomAndFit(model.state.workouts);
-        model.state.workouts.forEach((work) => mapView.renderWorkoutMarker(work));
-        loadWorkouts(model.state.workouts);
-    }
+    // todo DELETE WORKOUT LISTS, POPUP AND RERENDER WORKOUT LISTS, POPUP WITH
+    // EDITED DATA
+    mapView.setZoomAndFit(model.state.workouts);
+    model.state.workouts.forEach((work) => mapView.renderWorkoutMarker(work));
+    loadWorkouts(model.state.workouts);
 };
 
 const loadWorkouts = async function (workouts) {
     if (workouts.length === 0) return;
 
-    // RENDER WORKOUT LISTS ASYNCRONIZELY
+    // render workout list async
     for (const workout of workouts) {
         await workoutListsView.renderWorkout(
             workout,
@@ -77,13 +71,10 @@ const controlSetViewToPopup = function (popup) {
     mapView.setViewToPopup(workout);
 };
 
-const controlEdit = function () {
-    workoutListsView.showForm.bind(workoutListsView);
-    model.state.edit = false;
-};
+// todo controlEdit
 
 const controlWorkoutMenu = function (workoutEl, menuItem) {
-    if (menuItem === null) return; // Guard clause
+    if (menuItem === null) return; // Guard class
     const workout = findWorkout(model.state.workouts, workoutEl);
     model.state.workoutElement = workoutEl;
 
@@ -91,7 +82,7 @@ const controlWorkoutMenu = function (workoutEl, menuItem) {
     if (menuItem.classList.contains('menu__item--edit')) {
         workoutListsView.showEditForm(workout);
         workoutListsView.defaultElevationField();
-        model.state.edit = true;
+        // model.state.edit = true;
 
         // OPEN NEW FORM, WHEN EDIT FORM IS OPENED
         mapView.addHandlerClick(controlEdit);

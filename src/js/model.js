@@ -41,7 +41,7 @@ export class Running extends Workout {
     }
 }
 
-export class cycling extends Workout {
+export class Cycling extends Workout {
     type = "cycling";
 
     constructor(coords, distance, duration, elevationGain) {
