@@ -1,6 +1,7 @@
 import * as model from "./model.js";
 import mapView from "./View/mapView.js";
-import workoutListsView from "./View/workoutListView.js"
+import workoutListsView from "./View/workoutListView.js";
+import submenuView from "./View/subMenuView.js";
 
 
 // Get position from geo api and control map
@@ -11,7 +12,7 @@ const controlMap = function () {
     }
 };
 
-const controlWorkouts = function () {
+const controlWorkout = function () {
     // RENDER NEW WORKOUT
     workoutListsView.newWorkout(
         model.Running,
@@ -127,7 +128,7 @@ const controlWorkoutMenu = function (workoutEl, menuItem) {
 
 const init = function () {
     controlMap();
-    model.getLocalStorage();
+    // model.getLocalStorage();
     loadWorkouts(model.state.workouts);
     workoutListsView.addHandlerForm(controlWorkout);
     workoutListsView.addHandlerSetViewToList(controlSetViewToList);

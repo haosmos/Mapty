@@ -97,4 +97,4 @@ class MapView extends View {
     }
 }
 
-export default new mapView();
+export default new MapView();

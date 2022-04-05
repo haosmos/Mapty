@@ -34,6 +34,12 @@ class WorkoutListView extends View {
         });
     }
 
+    addHandlerForm(handler) {
+        this._form.addEventListener('submit', function (e) {
+
+        });
+    }
+
     // Handler form when user submits
     _addHandlerSelect() {
         this._inputType.addEventListener('change', this._toggleElevationField.bind(this));
