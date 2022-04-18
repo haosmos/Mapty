@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5%; // 1rem = 10px 10 / 16
   box-sizing: border-box;
 
   &:focus-within {
@@ -22,23 +22,6 @@ html {
   }
   @media screen and (max-width: $bp-micro) {
     font-size: 40%; // 1rem = 6,4px
-  }
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 62.5%; // 1rem = 10px 10 / 16
-  box-sizing: border-box;
-
-  @media only screen and (max-width: $bp-medium) {
-    font-size: 50%; // 1rem = 8px
   }
 }
 
@@ -59,5 +42,42 @@ body {
   @media only screen and (max-width: $bp-small) {
     display: flex;
     flex-direction: column;
+  }
+}
+
+#map {
+  height: 100%;
+  background-color: var(--color-light--1);
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 0.5s;
+}
+
+.overlay.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.copyright {
+  font-size: 1.3rem;
+  text-align: center;
+  color: var(--color-light--1);
+  margin-top: auto;
+
+  span {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    display: none;
   }
 }

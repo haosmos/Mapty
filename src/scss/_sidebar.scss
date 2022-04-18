@@ -1,3 +1,18 @@
+.side-bar {
+  background-color: var(--color-dark--1);
+  padding: 3rem;
+  min-width: 48rem;
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (max-width: $bp-small) {
+    height: 45vh;
+  }
+  @media only screen and (max-width: $bp-micro) {
+    height: 55vh;
+  }
+}
+
 .logo {
   height: 5.2rem;
   align-self: center;
