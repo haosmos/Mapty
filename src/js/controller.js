@@ -1,7 +1,7 @@
 import * as model from "./model.js";
 import mapView from "./View/mapView.js";
 import workoutListsView from "./View/workoutListView.js";
-import submenuView from "./View/subMenuView.js";
+import menuItemWorkoutView from "./View/menuItemWorkoutView.js";
 import "leaflet";
 import { findWorkout, findWorkoutPopup } from "./helper";
 
@@ -11,6 +11,7 @@ const controlMap = function () {
     navigator.geolocation.getCurrentPosition((position) => mapView.loadMap(position, model.state.workouts), () => mapView.renderError()
       .bind(mapView));
   }
+
 };
 
 const controlWorkout = function () {
@@ -44,13 +45,41 @@ const controlWorkout = function () {
     model.setLocalStorage(model.state.workouts);
 
     // DELETE WORKOUT LISTS, POPUP AND RERENDER WORKOUT LISTS, POPUP WITH EDITED DATA
-    submenuView.deleteAllWorkouts();
+    menuItemWorkoutView.deleteAllWorkouts();
     model.state.edit = false;
     mapView.setZoomAndFit(model.state.workouts);
     model.state.workouts.forEach((work) => mapView.renderWorkoutMarker(work));
     loadWorkouts(model.state.workouts);
   }
+
+  // toggle main menu
+  const btnsMenu = document.querySelector('.btns-menu');
+
+  // If workouts array is empty add hidden class
+  if (model.state.workouts.length === 0) {
+    btnsMenu.classList.add('btns-menu--hidden');
+    // If workouts array has entries remove hidden class
+  } else {
+    btnsMenu.classList.remove('btns-menu--hidden');
+  }
 };
+
+// const controlMenu = function () {
+//   const sortBar = document.querySelector('.sort-bar');
+//
+//   const btnSort = document.querySelector('.btn-sort');
+//   //
+//   btnSort.addEventListener("click", () => {
+//     sortBar.classList.toggle('sort-bar--hidden');
+//   });
+// }
+
+const controlMenu = function () {
+  const sortBar = document.querySelector('.sort-bar');
+  //
+  sortBar.classList.toggle('sort-bar--hidden');
+
+}
 
 const loadWorkouts = async function (workouts) {
   if (workouts.length === 0) return;
@@ -80,7 +109,7 @@ const controlEdit = function () {
   model.state.edit = false;
 }
 
-const controlWorkoutMenu = function (workoutEl, menuItem) {
+const controlWorkoutMenuItem = function (workoutEl, menuItem) {
   if (menuItem === null) return; // Guard class
   const workout = findWorkout(model.state.workouts, workoutEl);
   model.state.workoutElement = workoutEl;
@@ -97,7 +126,7 @@ const controlWorkoutMenu = function (workoutEl, menuItem) {
 
   // CLICK ON DELETE BUTTON, DELETE THE WORKOUT
   if (menuItem.classList.contains('menu__item--delete')) {
-    submenuView.deleteWorkout(workout, workoutEl);
+    menuItemWorkoutView.deleteWorkout(workout, workoutEl);
 
     // DELETE LIST FROM WORKOUT ARRAY AND LOCAL STORAGE
     model.state.workouts =
@@ -108,7 +137,7 @@ const controlWorkoutMenu = function (workoutEl, menuItem) {
 
   // // CLICK ON CLEAR BUTTON, DELETE ALL WORKOUTS FROM THE LIST, MAP AND STORAGE
   if (menuItem.classList.contains('menu__item--clear')) {
-    submenuView.deleteAllWorkouts();
+    menuItemWorkoutView.deleteAllWorkouts();
     mapView.setZoomAndFit(model.state.workouts);
     model.state.workouts = [];
     model.setLocalStorage(model.state.workouts);
@@ -117,7 +146,7 @@ const controlWorkoutMenu = function (workoutEl, menuItem) {
   // CLICK ON SORT BUTTON,
   if (menuItem.classList.contains('menu__item--sort')) {
     // HIDE WORKOUT LISTS AND SORT LISTS BY DISTANCE AND CLICK AGAIN BY TIME
-    submenuView.sortWorkout(model.state.workouts, model.state.sort);
+    menuItemWorkoutView.sortWorkout(model.state.workouts, model.state.sort);
     model.state.sort = !model.state.sort;
 
     // MANIPULATING WORKOUTS DATA AND SET VIEW AND RERENDER WORKOUTS
@@ -126,7 +155,7 @@ const controlWorkoutMenu = function (workoutEl, menuItem) {
     loadWorkouts(model.state.workouts);
   }
 
-  submenuView.hideMenu();
+  menuItemWorkoutView.hideMenu();
 };
 
 // model.clearLocalStorage();
@@ -135,10 +164,13 @@ const init = function () {
   controlMap();
   // model.getLocalStorage();
   loadWorkouts(model.state.workouts);
+  // workoutListsView.addHandlerControlMenu(controlMenu)
   workoutListsView.addHandlerForm(controlWorkout);
   workoutListsView.addHandlerSetViewToList(controlSetViewToList);
+  workoutListsView.addHandlerControlMenu(controlMenu);
+  // controlMenu();
   mapView.addHandlerSetViewToPopup(controlSetViewToPopup);
-  submenuView.addHandlerControlMenu(controlWorkoutMenu);
+  menuItemWorkoutView.addHandlerControlMenuItem(controlWorkoutMenuItem);
 };
 
 init();

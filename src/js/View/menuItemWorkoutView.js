@@ -3,7 +3,7 @@ import 'leaflet';
 import View from './View.js';
 import { findMarkerByClassName, findPopupByClassName } from "../helper";
 
-class SubmenuView extends View {
+class MenuItemWorkoutView extends View {
   _parentEl = document.querySelector(".side-bar");
 
   constructor() {
@@ -15,13 +15,12 @@ class SubmenuView extends View {
   // render popup-menu when click on the three dots
   _addHandlerRender() {
     this._parentEl.addEventListener('click', function (e) {
-      if (e.target.tagName !== "svg" && e.target.tagName !==
-          "use") {
-        return;
-      }
+      if (e.target.tagName !== "svg" && e.target.tagName !== "use") return;
 
       const menu = e.target.closest(".workout").querySelector(".menu");
 
+      console.log(menu);
+      console.log(e)
       // for animations
       menu.style.display = "block";
       setTimeout(() => menu.classList.remove("menu__hidden"), 10);
@@ -32,7 +31,7 @@ class SubmenuView extends View {
     this._parentEl.addEventListener("click", this._hideMenuClickOutside.bind(this));
   }
 
-  addHandlerControlMenu(handler) {
+  addHandlerControlMenuItem(handler) {
     this._parentEl.addEventListener("click", function (e) {
       const menuItem = e.target.closest(".menu__item");
       const workoutEl = e.target.closest(".workout");
@@ -110,4 +109,4 @@ class SubmenuView extends View {
   }
 }
 
-export default new SubmenuView();
+export default new MenuItemWorkoutView();

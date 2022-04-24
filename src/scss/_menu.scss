@@ -1,0 +1,94 @@
+.btns-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  //max-width: 48rem;
+}
+
+.btns-menu--hidden {
+  visibility: hidden;
+  height: 0;
+  opacity: 0;
+}
+
+button,
+button:link,
+button:visited {
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-light--2);
+}
+
+.btn-reset,
+.btn-sort,
+.btn-overview {
+  display: flex;
+  position: relative;
+  /* align-items: flex-end; */
+  /* position: absolute; */
+  /* top: 9rem; */
+  transition: transform 250ms;
+}
+
+.btn-reset {
+  margin-left: 2rem;
+}
+
+.btn-reset__icon {
+  height: 2rem;
+  bottom: 0;
+  left: -2.4rem;
+}
+
+.btn-overview:hover,
+.btn-overview:active,
+.btn-sort:hover,
+.btn-sort:active,
+.btn-reset:hover,
+.btn-reset:active {
+  transform: scale(1.1) translateY(-0.2rem);
+  text-decoration: underline;
+}
+
+.btn-overview {
+  transition: transform 250ms;
+}
+
+.btn-reset__icon,
+.btn-sort__icon,
+.btn-overview__icon {
+  position: absolute;
+}
+
+.btn-sort__icon {
+  height: 2rem;
+  margin-right: 0.3rem;
+  left: -2.3rem;
+}
+
+.btn-overview__icon {
+  height: 1.8rem;
+  left: -1.8rem;
+  bottom: 0;
+}
+
+/* Sort bar */
+.sort-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--color-light--1);
+  border-radius: 5px;
+  transition: all 1s ease-out;
+  opacity: 1;
+  height: 5rem;
+  overflow: hidden;
+}
+
+.sort-bar--hidden {
+  height: 0;
+}
